@@ -9,7 +9,7 @@
 <template>
   <div style="position: absolute; display:flex; align-items: flex-end;">
     <div class="tbtcontainer" style="max-width: 300px; display:flex; align-items: flex-end;">
-      <v-btn class="tmenubt" color="secondary" @click.stop.native="locationClicked()"><v-icon class="hidden-sm-and-up">location_on</v-icon><span class="hidden-xs-only">{{ $store.state.currentLocation.shortName }}</span></v-btn>
+      
     </div>
     <v-spacer></v-spacer>
 
@@ -21,13 +21,7 @@
     <bottom-button label="Atmosphere"
                 img="/static/images/btn-atmosphere.svg"
                 :toggled="$store.state.stel.atmosphere.visible"
-                @clicked="(b) => { $stel.core.atmosphere.visible = b }">
-    </bottom-button>
-    <bottom-button label="Landscape"
-                img="/static/images/btn-landscape.svg"
-                :toggled="$store.state.stel.landscape.visible"
-                @clicked="(b) => { $stel.core.landscape.visible = b }">
-    </bottom-button>
+
     <bottom-button label="Azimuthal Grid"
                 img="/static/images/btn-azimuthal-grid.svg"
                 :toggled="$store.state.stel.lines.azimuthal.visible"
@@ -53,15 +47,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-menu :close-on-content-click="true" transition="v-slide-y-transition" offset-y top left>
-      <v-btn class="tmenubt" color="secondary" slot="activator"><v-icon class="hidden-sm-and-up">today</v-icon><span class="hidden-xs-only">{{ date }}</span></v-btn>
-      <v-date-picker v-model="date" scrollable dark></v-date-picker>
-    </v-menu>
 
-    <v-menu :close-on-content-click="false" transition="v-slide-y-transition" offset-y top left offset-y>
-      <v-btn class="tmenubt" color="secondary" slot="activator"><v-icon class="hidden-sm-and-up">access_time</v-icon><span class="hidden-xs-only">{{ time }}</span></v-btn>
-      <v-time-picker v-model="time" dark format="24hr"></v-time-picker>
-    </v-menu>
 
 
   </div>
@@ -85,43 +71,12 @@ export default {
       d.setMJD(this.$store.state.stel.observer.utc)
       return Moment(d)
     },
-    time: {
-      get: function () {
-        let utc = this.utc.clone()
-        utc.local()
-        return utc.format('HH:mm:ss')
-      },
-      set: function (newValue) {
-        let utc = this.utc.clone()
-        utc.local()
-        let m = Moment('2000-01-01 ' + newValue + ':00')
-        utc.hours(m.hours())
-        utc.minutes(m.minutes())
-        this.$stel.core.observer.utc = utc.toDate().getMJD()
-      }
-    },
-    date: {
-      get: function () {
-        let utc = this.utc.clone()
-        utc.local()
-        return utc.format('YYYY-MM-DD')
-      },
-      set: function (newValue) {
-        let utc = this.utc.clone()
-        utc.local()
-        let m = Moment(newValue)
-        utc.year(m.year()).month(m.month()).date(m.date())
-        this.$stel.core.observer.utc = utc.toDate().getMJD()
-      }
-    },
+
     fullscreenBtnImage: function () {
       return this.$store.state.fullscreen ? '/static/images/svg/ui/fullscreen_exit.svg' : '/static/images/svg/ui/fullscreen.svg'
     }
   },
   methods: {
-    locationClicked: function () {
-      this.$store.commit('toggleBool', 'showLocationDialog')
-    },
     setFullscreen: function (b) {
       this.$fullscreen.toggle(document.body, {
         wrap: false,

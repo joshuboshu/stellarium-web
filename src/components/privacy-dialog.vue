@@ -11,7 +11,7 @@
   <v-card v-if="$store.state.showPrivacyDialog">
     <v-card-title><div class="headline">Our Privacy Policy</div></v-card-title>
     <v-card-text style="height: 600px;">
-    <p>Stellarium Web is an online planetarium developed by Noctua Software Ltd with the goal of being easy to use and beautiful. We collect your data to help us achieve this goal, and we consider and respect your privacy rights every step of the way.</p>
+    <p>AstroNauta es un planetario online visual y disruptivo, desarrollado para ser fácil de usar y visualmente atractivo. Respetamos tu privacidad y no recopilamos datos personales.</p>
 
     <p>We want to be completely open about what we are doing and why. The purpose of this policy is to explain how Noctua Software Ltd and all of its subsidiaries collect and use the personal information you provide to us, whether online, via phone, email, in letters, in any other correspondence, or even from other people.</p>
 
@@ -111,7 +111,7 @@
     <p>We may ask for your help in locating specific information, e.g. on forum postings and confirming your identity. If you would like to exercise any of your rights, please let us know by writing to <a href="mailto:contact@noctua-software.com">contact@noctua-software.com</a>. We will act in accordance with your instructions as soon as reasonably possible, and there will be no charge.</p>
 
     <h3>9. Information about cookies</h3>
-    <p>The Stellarium Web website, like most websites, uses small text files called cookies. This note provides information on what cookies are, which cookies we uses, and how they can be controlled.</p>
+    <p>El sitio AstroNauta, como la mayoría de sitios web, utiliza cookies solo para mejorar la experiencia visual. Aquí te explicamos qué son y cómo puedes gestionarlas.</p>
 
     <p>Our website uses cookies to distinguish you from other users of our website. A cookie is a small file of letters and numbers that we store on your browser or the hard drive of your computer if you agree. Cookies helps us to provide you with a good experience when you browse our website and also allows us to improve our site. By continuing to browse the site, you are agreeing to our use of cookies.</p>
 

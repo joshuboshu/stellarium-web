@@ -58,7 +58,7 @@ export default {
   height: 48px;
 }
 
-#stellarium-web-toolbar-logo {
+#astronauta-toolbar-logo {
   margin-right: 10px;
   margin-left: 30px;
 }

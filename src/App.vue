@@ -10,8 +10,8 @@
 
 <v-app dark>
   <v-snackbar bottom left multi-line :timeout="0" v-model="snackbar" color="secondary" >
-    <p>This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies. Check our <a v-on:click.stop="$store.state.showPrivacyDialog = true">Privacy Policy</a>.</p>
-    <v-btn class="blue--text darken-1" flat @click.native="acceptCookies">I Agree</v-btn>
+    <p>Este sitio utiliza cookies. Al continuar navegando, aceptas nuestro uso de cookies. Consulta nuestra <a v-on:click.stop="$store.state.showPrivacyDialog = true">Política de Privacidad</a>.</p>
+    <v-btn class="blue--text darken-1" flat @click.native="acceptCookies">Estoy de acuerdo</v-btn>
   </v-snackbar>
   <v-navigation-drawer absolute temporary clipped v-model="nav" dark>
     <v-list dense>
@@ -65,17 +65,17 @@ export default {
     return {
       snackbar: this.$cookie.get('cookieAccepted') !== 'y',
       menuItems: [
-        {header: 'Ephemeris'},
-        {title: 'Planets Tonight', icon: 'panorama_fish_eye', store_var_name: 'showPlanetsVisibilityDialog'},
-        {title: 'Sky This Month', icon: 'event', store_var_name: 'showSkyThisMonthDialog'},
+        {header: 'Efemérides'},
+        {title: 'Planetas esta noche', icon: 'panorama_fish_eye', store_var_name: 'showPlanetsVisibilityDialog'},
+        {title: 'El cielo este mes', icon: 'event', store_var_name: 'showSkyThisMonthDialog'},
         {divider: true},
-        {header: 'Settings'},
-        {title: 'View Settings', icon: 'settings', store_var_name: 'showViewSettingsDialog'}
+        {header: 'Configuración'},
+        {title: 'Ajustes de vista', icon: 'settings', store_var_name: 'showViewSettingsDialog'}
       ].concat(this.getPluginsMenuItems()).concat([
         {divider: true},
-        {title: 'About', icon: 'info', store_var_name: 'showAboutDialog'},
-        {title: 'Data Credits', icon: 'copyright', store_var_name: 'showDataCreditsDialog'},
-        {title: 'Privacy', icon: 'lock', store_var_name: 'showPrivacyDialog'}
+        {title: 'Acerca de', icon: 'info', store_var_name: 'showAboutDialog'},
+        {title: 'Créditos de datos', icon: 'copyright', store_var_name: 'showDataCreditsDialog'},
+        {title: 'Privacidad', icon: 'lock', store_var_name: 'showPrivacyDialog'}
       ]),
       guiComponent: 'GuiLoader',
       startTimeIsSet: false
@@ -174,6 +174,13 @@ export default {
     // To modify the state of the StelWebEngine, it's enough to call/set values directly on the $stel object
     swh.initStelWebEngine(this.$store, this.$refs.stelCanvas, function () {
       that.$stel.core.observer.utc = new Date().getMJD()
+      // Desactivar atmósfera y paisaje por defecto
+      if (that.$stel.core.atmosphere) {
+        that.$stel.core.atmosphere.visible = false
+      }
+      if (that.$stel.core.landscape) {
+        that.$stel.core.landscape.visible = false
+      }
       that.autoLocation()
       that.guiComponent = 'Gui'
     })

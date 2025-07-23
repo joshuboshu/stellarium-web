@@ -6,7 +6,7 @@
 // The terms of the AGPL v3 license can be found in the main directory of this
 // repository.
 
-<template>
+<!-- Archivo eliminado: Localizador deshabilitado -->
 <v-dialog lazy max-width="600" v-model="$store.state.showLocationDialog">
   <v-container v-if="$store.state.showLocationDialog" class="secondary white--text">
     <v-card color="secondary" flat>

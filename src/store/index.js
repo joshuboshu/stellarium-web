@@ -40,7 +40,7 @@ const createStore = () => {
       showViewSettingsDialog: false,
       showPlanetsVisibilityDialog: false,
       showSkyThisMonthDialog: false,
-      showLocationDialog: false,
+
       selectedObject: undefined,
 
       showSidePanel: false,

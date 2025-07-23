@@ -35,7 +35,7 @@ import PrivacyDialog from '@/components/privacy-dialog.vue'
 import ViewSettingsDialog from '@/components/view-settings-dialog.vue'
 import SkyThisMonth from '@/components/sky-this-month.vue'
 import PlanetsVisibility from '@/components/planets-visibility.vue'
-import LocationDialog from '@/components/location-dialog.vue'
+
 
 export default {
   data: function () {
@@ -47,7 +47,7 @@ export default {
         'view-settings-dialog',
         'sky-this-month',
         'planets-visibility',
-        'location-dialog']
+      ]
     }
   },
   methods: {
@@ -64,7 +64,7 @@ export default {
       return res
     }
   },
-  components: { Toolbar, BottomBar, AboutDialog, DataCreditsDialog, PrivacyDialog, ViewSettingsDialog, SkyThisMonth, PlanetsVisibility, SelectedObjectInfo, LocationDialog, ProgressBars }
+  components: { Toolbar, BottomBar, AboutDialog, DataCreditsDialog, PrivacyDialog, ViewSettingsDialog, SkyThisMonth, PlanetsVisibility, SelectedObjectInfo, ProgressBars }
 }
 </script>
 

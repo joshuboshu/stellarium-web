@@ -34,7 +34,7 @@ Vue.use(VueObserveVisibility)
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyBOfY-p-V3zecsV_K3pPuYyTPm5Vy-FURo',
+    key: 'AIzaSyBBK4QDqdM2UGFnvWho2bWgEWWyffFSoLk',
     libraries: 'places' // Required to use the Autocomplete plugin
   }
 })
