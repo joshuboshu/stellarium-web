@@ -9,13 +9,13 @@
 <template>
 <v-dialog lazy max-width='600' v-model="$store.state.showPlanetsVisibilityDialog">
   <v-card v-if="$store.state.showPlanetsVisibilityDialog" transparent class="secondary white--text">
-    <v-card-title><div class="headline">Planets Visibility</div></v-card-title>
-    <v-card-text>Night from {{ startDate.format('MMMM Do') }} to {{ endDate.format('MMMM Do') }}</v-card-text>
+    <v-card-title><div class="headline">Visibilidad de Planetas</div></v-card-title>
+    <v-card-text>Noche del {{ startDate.format('D [de] MMMM') }} al {{ endDate.format('D [de] MMMM') }}</v-card-text>
     <v-card-text>
       <div>
         <v-layout row wrap>
-          <v-flex xs1 offset-xs2><span>Rise</span></v-flex>
-          <v-flex xs1><span>Set</span></v-flex>
+          <v-flex xs1 offset-xs2><span>Sale</span></v-flex>
+          <v-flex xs1><span>Se oculta</span></v-flex>
           <v-flex xs8>
             <v-layout row justify-space-between>
               <span>12:00</span><span>18:00</span><span>00:00</span><span>06:00</span><span>12:00</span>
@@ -35,7 +35,7 @@
       </div>
     </v-card-text>
     <v-card-actions>
-      <v-spacer></v-spacer><v-btn class="blue--text darken-1" flat @click.native="$store.state.showPlanetsVisibilityDialog = false">Close</v-btn>
+      <v-spacer></v-spacer><v-btn class="blue--text darken-1" flat @click.native="$store.state.showPlanetsVisibilityDialog = false">Cerrar</v-btn>
     </v-card-actions>
   </v-card>
 </v-dialog>
@@ -108,7 +108,7 @@ export default {
       }
       obs.destroy()
 
-      var txt = 'position: relative; background: linear-gradient(to right, '
+      var txt = 'position: relative; background: linear-gradient(120deg, #2196f3 0%, #0d47a1 100%) !important; border-radius: 16px; box-shadow: 0 4px 18px 0 rgba(13, 71, 161, 0.14); padding: 18px 8px;'
       for (let i = 0; i < 25; i++) {
         let bi = (brightness[i] + 0.1) * 5
         bi = bi > 1 ? 1 : bi

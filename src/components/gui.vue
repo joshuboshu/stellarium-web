@@ -8,7 +8,7 @@
 
 <template>
 
-<div class="click-through" style="position:absolute; width: 100%; height: 100%; display:flex; align-items: flex-end;">
+<div class="click-through" style="position:absolute; width: 100%; height: 100%; display:flex; align-items: flex-end; padding-top: 64px; background: transparent;">
   <toolbar class="get-click"></toolbar>
   <template v-for="item in pluginsGuiComponents">
     <component :is="item"></component>
@@ -36,6 +36,7 @@ import ViewSettingsDialog from '@/components/view-settings-dialog.vue'
 import SkyThisMonth from '@/components/sky-this-month.vue'
 import PlanetsVisibility from '@/components/planets-visibility.vue'
 import LocationDialog from '@/components/location-dialog.vue'
+import DateSelectorDialog from '@/components/date-selector-dialog.vue'
 
 export default {
   data: function () {
@@ -47,7 +48,8 @@ export default {
         'view-settings-dialog',
         'sky-this-month',
         'planets-visibility',
-        'location-dialog']
+        'location-dialog',
+        'date-selector-dialog']
     }
   },
   methods: {
@@ -64,7 +66,7 @@ export default {
       return res
     }
   },
-  components: { Toolbar, BottomBar, AboutDialog, DataCreditsDialog, PrivacyDialog, ViewSettingsDialog, SkyThisMonth, PlanetsVisibility, SelectedObjectInfo, LocationDialog, ProgressBars }
+  components: { Toolbar, BottomBar, AboutDialog, DataCreditsDialog, PrivacyDialog, ViewSettingsDialog, SkyThisMonth, PlanetsVisibility, SelectedObjectInfo, LocationDialog, ProgressBars, DateSelectorDialog }
 }
 </script>
 

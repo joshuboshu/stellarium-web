@@ -8,8 +8,8 @@
 
 <template>
 <v-dialog lazy max-width="600" v-model="$store.state.showLocationDialog">
-  <v-container v-if="$store.state.showLocationDialog" class="secondary white--text">
-    <v-card color="secondary" flat>
+  <v-container v-if="$store.state.showLocationDialog" class="modern-dialog blue-gradient white--text">
+    <v-card color="secondary" flat class="modern-dialog blue-gradient">
       <v-switch label="Use Autolocation" v-model="useAutoLocation" dark></v-switch>
     </v-card>
     <location-mgr v-on:locationSelected="setLocation" :knownLocations="[]"></location-mgr>

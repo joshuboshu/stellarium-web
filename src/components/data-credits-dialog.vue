@@ -7,7 +7,7 @@
 // repository.
 
 <template>
-<v-dialog lazy scrollable max-width='600' v-model="$store.state.showDataCreditsDialog">
+<v-dialog class="modern-dialog blue-gradient white--text" lazy scrollable max-width='600' v-model="$store.state.showDataCreditsDialog">
   <v-card v-if="$store.state.showDataCreditsDialog">
     <v-card-title><div class="headline">Data Credits</div></v-card-title>
     <v-card-text style="height: 600px;">
@@ -66,6 +66,13 @@
 </script>
 
 <style>
+.modern-dialog.blue-gradient {
+  background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%) !important;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px 0 rgba(13, 71, 161, 0.18);
+  padding: 24px 12px;
+}
+
 .data-credits {
   padding-left: 30px;
 }

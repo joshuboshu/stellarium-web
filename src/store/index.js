@@ -41,6 +41,7 @@ const createStore = () => {
       showPlanetsVisibilityDialog: false,
       showSkyThisMonthDialog: false,
       showLocationDialog: false,
+      showDateSelectorDialog: false,
       selectedObject: undefined,
 
       showSidePanel: false,

@@ -120,7 +120,21 @@ export default {
     }
   },
   mounted: function () {
-    this.myPositionClicked()
+    // Si la ubicación es inválida, forzar autolocalización
+    if (!this.autoDetectLocation ||
+        !this.autoDetectLocation.lat ||
+        !this.autoDetectLocation.lng ||
+        this.autoDetectLocation.accuracy > 10000) {
+      const that = this;
+      import('@/assets/sw_helpers.js').then(({ swh }) => {
+        swh.getGeolocation(that).then(swh.geoCodePosition).then((loc) => {
+          that.$store.commit('setAutoDetectedLocation', loc)
+          that.myPositionClicked()
+        }, (error) => { console.log(error); that.myPositionClicked() })
+      })
+    } else {
+      this.myPositionClicked()
+    }
   },
   methods: {
     // Workaround a map refresh bug..

@@ -1,4 +1,4 @@
-// Stellarium Web - Copyright (c) 2018 - Noctua Software Ltd
+// AstroBlue - Copyright (c) 2018 - Noctua Software Ltd
 //
 // This program is licensed under the terms of the GNU AGPL v3, or
 // alternatively under a commercial licence.
@@ -10,8 +10,8 @@
 
 <v-app dark>
   <v-snackbar bottom left multi-line :timeout="0" v-model="snackbar" color="secondary" >
-    <p>This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies. Check our <a v-on:click.stop="$store.state.showPrivacyDialog = true">Privacy Policy</a>.</p>
-    <v-btn class="blue--text darken-1" flat @click.native="acceptCookies">I Agree</v-btn>
+    <p>Este sitio utiliza cookies. Al continuar navegando, aceptas nuestro uso de cookies. Consulta nuestra <a v-on:click.stop="$store.state.showPrivacyDialog = true">Política de Privacidad</a>.</p>
+    <v-btn class="blue--text darken-1" flat @click.native="acceptCookies">Acepto</v-btn>
   </v-snackbar>
   <v-navigation-drawer absolute temporary clipped v-model="nav" dark>
     <v-list dense>
@@ -65,17 +65,18 @@ export default {
     return {
       snackbar: this.$cookie.get('cookieAccepted') !== 'y',
       menuItems: [
-        {header: 'Ephemeris'},
-        {title: 'Planets Tonight', icon: 'panorama_fish_eye', store_var_name: 'showPlanetsVisibilityDialog'},
-        {title: 'Sky This Month', icon: 'event', store_var_name: 'showSkyThisMonthDialog'},
+        {header: 'Efemérides'},
+        {title: 'Planetas Esta Noche', icon: 'panorama_fish_eye', store_var_name: 'showPlanetsVisibilityDialog'},
+        {title: 'Cielo Este Mes', icon: 'event', store_var_name: 'showSkyThisMonthDialog'},
+        {title: 'Selector de Fecha', icon: 'date_range', store_var_name: 'showDateSelectorDialog'},
         {divider: true},
-        {header: 'Settings'},
-        {title: 'View Settings', icon: 'settings', store_var_name: 'showViewSettingsDialog'}
+        {header: 'Configuración'},
+        {title: 'Configuración de Vista', icon: 'settings', store_var_name: 'showViewSettingsDialog'}
       ].concat(this.getPluginsMenuItems()).concat([
         {divider: true},
-        {title: 'About', icon: 'info', store_var_name: 'showAboutDialog'},
-        {title: 'Data Credits', icon: 'copyright', store_var_name: 'showDataCreditsDialog'},
-        {title: 'Privacy', icon: 'lock', store_var_name: 'showPrivacyDialog'}
+        {title: 'Acerca de', icon: 'info', store_var_name: 'showAboutDialog'},
+        {title: 'Créditos de Datos', icon: 'copyright', store_var_name: 'showDataCreditsDialog'},
+        {title: 'Privacidad', icon: 'lock', store_var_name: 'showPrivacyDialog'}
       ]),
       guiComponent: 'GuiLoader',
       startTimeIsSet: false
@@ -85,8 +86,8 @@ export default {
   methods: {
     getPluginsMenuItems: function () {
       let res = []
-      for (let i in this.$stellariumWebPlugins()) {
-        let plugin = this.$stellariumWebPlugins()[i]
+      for (let i in this.$sAstroBluePlugins()) {
+        let plugin = this.$sAstroBluePlugins()[i]
         if (plugin.menuItems) {
           res = res.concat(plugin.menuItems)
         }
@@ -202,6 +203,8 @@ html, body {
   width: 100%;
   height: 100%;
   padding: 0!important;
+  background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%) !important;
+  font-family: 'Roboto', 'Montserrat', Arial, sans-serif;
 }
 
 .fullscreen {

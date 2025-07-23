@@ -579,6 +579,7 @@ export const swh = {
   },
 
   getGeolocation: function (vueInstance) {
+  console.log('[AstroBlue] Intentando obtener geolocalización...')
     console.log('Getting geolocalization')
     var that = vueInstance
 
@@ -590,24 +591,32 @@ export const swh = {
             lng: position.coords.longitude,
             accuracy: position.coords.accuracy
           }
-          resolve(pos)
+          console.log('[AstroBlue] Geolocalización exitosa', pos)
+        resolve(pos)
         }, function () {
-          reject(new Error('Error getting location from browser'))
+          console.error('[AstroBlue] Error obteniendo ubicación del navegador')
+        reject(new Error('Error getting location from browser'))
         }, { enableHighAccuracy: true })
       })
     }
 
     // No HTML5 Geolocalization support, try with GEOIP
+  console.warn('[AstroBlue] navigator.geolocation no soportado, usando GeoIP')
     console.log('Browser don\'t support geolocation, try from GeoIP')
     return that.$jsonp('https://geoip-db.com/jsonp', {callbackName: 'callback'})
       .then(location => {
+      console.log('[AstroBlue] GeoIP retornó', location)
         var pos = {
           lat: location.latitude,
           lng: location.longitude,
           accuracy: 50000
         }
-        return pos
-      }, err => { console.log(err) })
+        if (!pos.lat || !pos.lng) {
+        console.error('[AstroBlue] GeoIP falló, lat/lng inválidos')
+        return { lat: 0, lng: 0, accuracy: 99999, error: 'GeoIP failed' }
+      }
+      return pos
+      }, err => { console.error('[AstroBlue] Error GeoIP', err); return { lat: 0, lng: 0, accuracy: 99999, error: 'GeoIP failed' } })
   },
 
   geoCodePosition: function (pos) {

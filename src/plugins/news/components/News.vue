@@ -1,4 +1,4 @@
-// Stellarium Web - Copyright (c) 2018 - Noctua Software Ltd
+// AstroBlue - Copyright (c) 2018 - Noctua Software Ltd
 //
 // This program is licensed under the terms of the GNU AGPL v3, or
 // alternatively under a commercial licence.
@@ -11,7 +11,7 @@
 <v-app dark>
   <div id="toolbar-image">
     <v-toolbar class="transparent" dense dark>
-      <img id="stellarium-web-toolbar-logo" src="/static/images/logo.svg" width="30" height="30" alt="Stellarium Web Logo"/>
+      <img id="astroblue-toolbar-logo" src="/static/images/logo.svg" width="30" height="30" alt="AstroBlue Logo"/>
       <span class="tbtitle">Stellarum<sup>Web</sup></span>
       <v-spacer></v-spacer>
     </v-toolbar>
@@ -19,7 +19,7 @@
 
   <div style="padding: 20px; width: 100vw;">
     <div style="max-width: 70vw; margin-left: auto; margin-right: auto;">
-      <h2 class="white--text">Stellarium Web Latest News</h2>
+      <h2 class="white--text">AstroBlue Latest News</h2>
       <template v-for="(item,i) in news">
         <news-post :post='item'></news-post>
       </template>

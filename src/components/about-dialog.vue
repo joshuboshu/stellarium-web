@@ -1,4 +1,4 @@
-// Stellarium Web - Copyright (c) 2018 - Noctua Software Ltd
+// AstroBlue - Copyright (c) 2018 - Noctua Software Ltd
 //
 // This program is licensed under the terms of the GNU AGPL v3, or
 // alternatively under a commercial licence.
@@ -8,20 +8,20 @@
 
 <template>
 <v-dialog lazy max-width="600" v-model="$store.state.showAboutDialog">
-  <v-card v-if="$store.state.showAboutDialog" class="secondary white--text">
-    <v-card-title><div class="headline">About</div></v-card-title>
+  <v-card v-if="$store.state.showAboutDialog" class="modern-dialog blue-gradient white--text" elevation="10">
+    <v-card-title><div class="headline">Acerca de</div></v-card-title>
     <v-card-text>
-      <p>Welcome to Stellarium Web, a free open source planetarium running in your web browser.
-      This page is sill in beta, please report any bugs or ask questions to <a href="mailto:contact@noctua-software.com">contact@noctua-software.com</a> or on our <a href="https://github.com/Stellarium/stellarium-web" target="_blank">Github page</a>.</p>
-      <p>If you want to get notified when we add new features (only for important news: no spam!) you can subscribe to our mailing list:</p>
-      <p>By subscribing to this mailing list, you agree with our <a v-on:click.stop="$store.state.showPrivacyDialog = true">Privacy Policy</a></p>
+      <p>Bienvenido a AstroBlue, un planetario gratuito y de código abierto que funciona en tu navegador web.
+      Esta página aún está en beta, por favor reporta cualquier error o haz preguntas a <a href="mailto:contact@noctua-software.com">contact@noctua-software.com</a> o en nuestra <a href="https://github.com/Stellarium/stellarium-web" target="_blank">página de Github</a>.</p>
+      <p>Si quieres recibir notificaciones cuando agreguemos nuevas características (solo noticias importantes: ¡sin spam!) puedes suscribirte a nuestra lista de correo:</p>
+      <p>Al suscribirte a esta lista de correo, aceptas nuestra <a v-on:click.stop="$store.state.showPrivacyDialog = true">Política de Privacidad</a></p>
       <v-layout row justify-space-around>
-        <v-text-field label="Email" v-model='email'/>
-        <v-btn color="secondary" @click.native='addEmail()' style="margin-top: auto; margin-bottom: auto;">Send</v-btn>
+        <v-text-field label="Correo electrónico" v-model='email'/>
+        <v-btn color="secondary" @click.native='addEmail()' style="margin-top: auto; margin-bottom: auto;">Enviar</v-btn>
       </v-layout>
     </v-card-text>
     <v-card-actions>
-      <v-spacer></v-spacer><v-btn class="blue--text darken-1" flat @click.native="$store.state.showAboutDialog = false">Close</v-btn>
+      <v-spacer></v-spacer><v-btn class="blue--text darken-1" flat @click.native="$store.state.showAboutDialog = false">Cerrar</v-btn>
     </v-card-actions>
   </v-card>
 </v-dialog>
@@ -37,7 +37,7 @@
     methods: {
       addEmail: function () {
         if (process.browser) {
-          this.$store.dispatch('addEmailToMailingList', this.email).then(() => { alert('Your email was added') })
+          this.$store.dispatch('addEmailToMailingList', this.email).then(() => { alert('Tu correo electrónico ha sido agregado') })
         }
       }
     }
@@ -45,6 +45,13 @@
 </script>
 
 <style>
+.modern-dialog.blue-gradient {
+  background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%) !important;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px 0 rgba(13, 71, 161, 0.18);
+  padding: 24px 12px;
+}
+
 a {
   color: #82b1ff;
 }
