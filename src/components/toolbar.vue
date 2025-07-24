@@ -28,7 +28,7 @@
           <i class="fas fa-clock"></i>
           <span>{{ formattedTime }}</span>
         </div>
-        <div class="fps-pill">FPS: {{ fps }}</div>
+        <div class="fps-pill">FPS {{ $store.state.stel ? $store.state.stel.fps.toFixed(1) : '?' }}</div>
         <v-dialog v-model="showDateDialog" max-width="320" persistent>
           <v-card class="date-modal">
             <v-card-title class="modal-title">
