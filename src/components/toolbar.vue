@@ -11,7 +11,7 @@
     <div class="stars"></div>
     <v-toolbar class="astro-toolbar" dense>
       <v-toolbar-side-icon @click.native.stop="toggleNavigationDrawer" />
-      <img class="astro-toolbar-logo" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Space_icon.svg" width="38" height="38" alt="AstroNauta Logo" />
+      <img class="astro-toolbar-logo" src="https://cdn-icons-png.flaticon.com/512/3212/3212608.png" width="38" height="38" alt="AstroNauta Logo" />
       <div class="brand">
         <span class="tbtitle">Astro<span class="highlight">NAUTA</span></span>
         <div class="subtitle">Explora el Universo</div>

@@ -9,20 +9,20 @@
 <template>
 <v-dialog lazy max-width='600' v-model="$store.state.showPlanetsVisibilityDialog">
   <v-card v-if="$store.state.showPlanetsVisibilityDialog" transparent class="secondary white--text">
-    <v-card-title><div class="headline">Planets Visibility</div></v-card-title>
-    <v-card-text>Night from {{ startDate.format('MMMM Do') }} to {{ endDate.format('MMMM Do') }}</v-card-text>
+    <v-card-title><div class="headline">Visibilidad de Planetas</div></v-card-title>
+    <v-card-text>Noche del {{ startDate.format('DD [de] MMMM') }} al {{ endDate.format('DD [de] MMMM') }}</v-card-text>
     <v-card-text>
       <div>
         <v-layout row wrap>
-          <v-flex xs1 offset-xs2><span>Rise</span></v-flex>
-          <v-flex xs1><span>Set</span></v-flex>
+          <v-flex xs1 offset-xs2><span>Sale</span></v-flex>
+          <v-flex xs1><span>Se Pone</span></v-flex>
           <v-flex xs8>
             <v-layout row justify-space-between>
               <span>12:00</span><span>18:00</span><span>00:00</span><span>06:00</span><span>12:00</span>
             </v-layout>
           </v-flex>
         <template v-for="obj in objs">
-          <v-flex xs2>{{obj.name}}</v-flex>
+          <v-flex xs2>{{getSpanishName(obj.name)}}</v-flex>
           <v-flex xs1>{{formatTime(obj.rise)}}</v-flex>
           <v-flex xs1>{{formatTime(obj.set)}}</v-flex>
           <v-flex xs8>
@@ -35,7 +35,7 @@
       </div>
     </v-card-text>
     <v-card-actions>
-      <v-spacer></v-spacer><v-btn class="blue--text darken-1" flat @click.native="$store.state.showPlanetsVisibilityDialog = false">Close</v-btn>
+      <v-spacer></v-spacer><v-btn class="blue--text darken-1" flat @click.native="$store.state.showPlanetsVisibilityDialog = false">Cerrar</v-btn>
     </v-card-actions>
   </v-card>
 </v-dialog>
@@ -44,9 +44,12 @@
 <script>
 
 import Moment from 'moment'
+import 'moment/locale/es'
 
 export default {
   data: function () {
+    // Configurar Moment.js en español
+    Moment.locale('es')
     return {
       objs: [
         this.$stel.getObj('Sun'),
@@ -56,10 +59,22 @@ export default {
         this.$stel.getObj('Mars'),
         this.$stel.getObj('Jupiter'),
         this.$stel.getObj('Saturn')
-      ]
+      ],
+      planetNames: {
+        'Sun': 'Sol',
+        'Moon': 'Luna',
+        'Mercury': 'Mercurio',
+        'Venus': 'Venus',
+        'Mars': 'Marte',
+        'Jupiter': 'Júpiter',
+        'Saturn': 'Saturno'
+      }
     }
   },
   methods: {
+    getSpanishName: function (englishName) {
+      return this.planetNames[englishName] || englishName
+    },
     formatTime: function (jdm) {
       let d = new Date()
       d.setMJD(jdm)

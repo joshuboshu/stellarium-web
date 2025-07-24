@@ -9,10 +9,7 @@
 <template>
 
 <v-app dark>
-  <v-snackbar bottom left multi-line :timeout="0" v-model="snackbar" color="secondary" >
-    <p>Este sitio utiliza cookies. Al continuar navegando, aceptas nuestro uso de cookies. Consulta nuestra <a v-on:click.stop="$store.state.showPrivacyDialog = true">Política de Privacidad</a>.</p>
-    <v-btn class="blue--text darken-1" flat @click.native="acceptCookies">Estoy de acuerdo</v-btn>
-  </v-snackbar>
+
   <v-navigation-drawer absolute temporary clipped v-model="nav" dark>
     <v-list dense>
       <template v-for="(item,i) in menuItems">
@@ -63,7 +60,7 @@ import Moment from 'moment'
 export default {
   data (context) {
     return {
-      snackbar: this.$cookie.get('cookieAccepted') !== 'y',
+  
       menuItems: [
         {header: 'Efemérides'},
         {title: 'Planetas esta noche', icon: 'panorama_fish_eye', store_var_name: 'showPlanetsVisibilityDialog'},
@@ -74,8 +71,7 @@ export default {
       ].concat(this.getPluginsMenuItems()).concat([
         {divider: true},
         {title: 'Acerca de', icon: 'info', store_var_name: 'showAboutDialog'},
-        {title: 'Créditos de datos', icon: 'copyright', store_var_name: 'showDataCreditsDialog'},
-        {title: 'Privacidad', icon: 'lock', store_var_name: 'showPrivacyDialog'}
+        {title: 'Créditos de datos', icon: 'copyright', store_var_name: 'showDataCreditsDialog'}
       ]),
       guiComponent: 'GuiLoader',
       startTimeIsSet: false

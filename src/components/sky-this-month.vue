@@ -10,11 +10,11 @@
 
 <v-dialog lazy max-width='600' v-model="$store.state.showSkyThisMonthDialog" scrollable>
 <v-card v-if="$store.state.showSkyThisMonthDialog" transparent class="secondary white--text">
-  <v-card-title><div class="headline">Sky This Month</div></v-card-title>
-  <v-card-text>Check what interesting astronomical events are taking place in a given month.
+  <v-card-title><div class="headline">Cielo Este Mes</div></v-card-title>
+  <v-card-text>Consulta qué eventos astronómicos interesantes tienen lugar en un mes determinado.
     <v-container fluid>
       <v-layout row justify-space-between>
-        <div class="grey--text text--lighten-1" style="align-items: center; display: flex; justify-content: center; width: 25%">Month / Year</div>
+        <div class="grey--text text--lighten-1" style="align-items: center; display: flex; justify-content: center; width: 25%">Mes / Año</div>
         <v-select :items="months" v-model="month"></v-select>
         &nbsp; &nbsp;
         <v-text-field :value="year" type="Number"></v-text-field>
@@ -40,7 +40,7 @@
     </v-list>
   </div>
   <v-card-actions>
-    <v-spacer></v-spacer><v-btn class="blue--text darken-1" flat @click.native="$store.state.showSkyThisMonthDialog = false">Close</v-btn>
+    <v-spacer></v-spacer><v-btn class="blue--text darken-1" flat @click.native="$store.state.showSkyThisMonthDialog = false">Cerrar</v-btn>
   </v-card-actions>
 </v-card>
 </v-dialog>
@@ -49,9 +49,12 @@
 <script>
 
 import Moment from 'moment'
+import 'moment/locale/es'
 
 export default {
   data: function () {
+    // Configurar Moment.js en español
+    Moment.locale('es')
     let d = new Date()
     d.setMJD(this.$store.state.stel.observer.utc)
     return {

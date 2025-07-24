@@ -9,19 +9,23 @@
 <template>
 <v-dialog lazy max-width="600" v-model="$store.state.showAboutDialog">
   <v-card v-if="$store.state.showAboutDialog" class="secondary white--text">
-    <v-card-title><div class="headline">About</div></v-card-title>
+    <v-card-title><div class="headline">Acerca de</div></v-card-title>
     <v-card-text>
-      <p>Bienvenido a AstroNauta, un planetario online visual, libre y disruptivo para explorar el cielo desde tu navegador.
-      This page is sill in beta, please report any bugs or ask questions to <a href="mailto:contact@noctua-software.com">contact@noctua-software.com</a> or on our <a href="https://github.com/Stellarium/stellarium-web" target="_blank">Github page</a>.</p>
-      <p>If you want to get notified when we add new features (only for important news: no spam!) you can subscribe to our mailing list:</p>
-      <p>By subscribing to this mailing list, you agree with our <a v-on:click.stop="$store.state.showPrivacyDialog = true">Privacy Policy</a></p>
-      <v-layout row justify-space-around>
-        <v-text-field label="Email" v-model='email'/>
-        <v-btn color="secondary" @click.native='addEmail()' style="margin-top: auto; margin-bottom: auto;">Send</v-btn>
-      </v-layout>
+      <p><strong>Bienvenido a AstroNauta</strong></p>
+      <p>Un planetario online visual, libre y disruptivo para explorar el cielo desde tu navegador.</p>
+      <p>AstroNauta te permite:</p>
+      <ul>
+        <li>Explorar el cielo nocturno en tiempo real</li>
+        <li>Viajar en el tiempo para ver el cielo en cualquier fecha</li>
+        <li>Buscar y localizar objetos celestes</li>
+        <li>Aprender sobre estrellas, planetas y constelaciones</li>
+        <li>Disfrutar de una experiencia astronómica inmersiva</li>
+      </ul>
+      <p>Basado en Stellarium Web, una versión web del famoso software de planetario Stellarium.</p>
+      <p><em>Explora el Universo desde la comodidad de tu navegador.</em></p>
     </v-card-text>
     <v-card-actions>
-      <v-spacer></v-spacer><v-btn class="blue--text darken-1" flat @click.native="$store.state.showAboutDialog = false">Close</v-btn>
+      <v-spacer></v-spacer><v-btn class="blue--text darken-1" flat @click.native="$store.state.showAboutDialog = false">Cerrar</v-btn>
     </v-card-actions>
   </v-card>
 </v-dialog>
@@ -29,18 +33,6 @@
 
 <script>
   export default {
-    data: function () {
-      return {
-        email: ''
-      }
-    },
-    methods: {
-      addEmail: function () {
-        if (process.browser) {
-          this.$store.dispatch('addEmailToMailingList', this.email).then(() => { alert('Your email was added') })
-        }
-      }
-    }
   }
 </script>
 
