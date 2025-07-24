@@ -28,7 +28,7 @@
           <i class="fas fa-clock"></i>
           <span>{{ formattedTime }}</span>
         </div>
-        
+        <div class="fps-pill">FPS: {{ fps }}</div>
         <v-dialog v-model="showDateDialog" max-width="320" persistent>
           <v-card class="date-modal">
             <v-card-title class="modal-title">
@@ -97,21 +97,43 @@
 <script>
 export default {
   data() {
-    return {
-      showDateDialog: false,
-      showTimeDialog: false,
-      // Diccionario español para fechas
-      spanishMonths: {
-        'Jan': 'Ene', 'Feb': 'Feb', 'Mar': 'Mar', 'Apr': 'Abr',
-        'May': 'May', 'Jun': 'Jun', 'Jul': 'Jul', 'Aug': 'Ago',
-        'Sep': 'Sep', 'Oct': 'Oct', 'Nov': 'Nov', 'Dec': 'Dic'
-      },
-      spanishDays: {
-        'Monday': 'Lunes', 'Tuesday': 'Martes', 'Wednesday': 'Miércoles',
-        'Thursday': 'Jueves', 'Friday': 'Viernes', 'Saturday': 'Sábado', 'Sunday': 'Domingo'
-      }
+  return {
+    showDateDialog: false,
+    showTimeDialog: false,
+    fps: 0,
+    _frames: 0,
+    _lastFpsUpdate: Date.now(),
+    _fpsRaf: null,
+    // Diccionario español para fechas
+    spanishMonths: {
+      'Jan': 'Ene', 'Feb': 'Feb', 'Mar': 'Mar', 'Apr': 'Abr',
+      'May': 'May', 'Jun': 'Jun', 'Jul': 'Jul', 'Aug': 'Ago',
+      'Sep': 'Sep', 'Oct': 'Oct', 'Nov': 'Nov', 'Dec': 'Dic'
+    },
+    spanishDays: {
+      'Monday': 'Lunes', 'Tuesday': 'Martes', 'Wednesday': 'Miércoles',
+      'Thursday': 'Jueves', 'Friday': 'Viernes', 'Saturday': 'Sábado', 'Sunday': 'Domingo'
     }
-  },
+  }
+},
+mounted() {
+  this._frames = 0;
+  this._lastFpsUpdate = Date.now();
+  const fpsLoop = () => {
+    this._frames++;
+    const now = Date.now();
+    if (now - this._lastFpsUpdate > 1000) {
+      this.fps = this._frames;
+      this._frames = 0;
+      this._lastFpsUpdate = now;
+    }
+    this._fpsRaf = requestAnimationFrame(fpsLoop);
+  };
+  this._fpsRaf = requestAnimationFrame(fpsLoop);
+},
+destroyed() {
+  if (this._fpsRaf) cancelAnimationFrame(this._fpsRaf);
+},
   computed: {
     // Obtener tiempo UTC del sistema Stellarium
     utc() {
@@ -344,12 +366,31 @@ export default {
   white-space: nowrap;
 }
 
-/* Modal Styles */
-.modal-title {
-  background: linear-gradient(45deg, #6a3093, #00eaff) !important;
-  color: white !important;
-  font-weight: 600 !important;
-  padding: 16px 24px !important;
+.fps-pill {
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  font-size: 13px;
+  border-radius: 14px;
+  padding: 6px 14px;
+  margin-left: 10px;
+  font-family: 'Roboto Mono', 'Consolas', monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  min-width: 56px;
+  justify-content: center;
+  user-select: none;
+  box-shadow: 0 1px 4px #0004;
+  border: 1px solid rgba(0,234,255,0.12);
+}
+@media (max-width: 600px) {
+  .fps-pill {
+    font-size: 11px;
+    padding: 4px 8px;
+    min-width: 38px;
+    margin-left: 5px;
+  }
 }
 
 .date-modal .v-card, .time-modal .v-card {
